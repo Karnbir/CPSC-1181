@@ -29,13 +29,13 @@ public class GuessTheNumber {
 
             switch (difficulty) {
                 case 0:
-                    Novice();
+                    novice();
                     break;
                 case 1:
-                    Intermediate();
+                    intermediate();
                     break;
                 case 2:
-                    Expert();
+                    expert();
                     break;
             }
 
@@ -47,15 +47,15 @@ public class GuessTheNumber {
     }
 
     /**
-     * Novice difficulty setting, relies on InputVerification method to validate input
+     * novice difficulty setting, relies on inputVerificationinputVerification method to validate input
      */
-    public static void Novice () {
+    public static void novice() {
         JOptionPane.showMessageDialog(null,"Multiply the answer of \"Step1\" by 10"
                 ,"Step2",JOptionPane.PLAIN_MESSAGE);
         String input = JOptionPane.showInputDialog(null,"Give me the result of your calculations",
                 "Type your number", JOptionPane.QUESTION_MESSAGE);
 
-        boolean validInput = InputVerification(input);
+        boolean validInput = inputVerification(input);
         //undo all math operations to correctly guess number
         if (validInput){
             double num = Double.parseDouble(input);
@@ -65,9 +65,9 @@ public class GuessTheNumber {
         }
     }
     /**
-     * Intermediate difficulty setting, relies on InputVerification method to validate input
+     * intermediate difficulty setting, relies on inputVerificationinputVerification method to validate input
      */
-    public static void Intermediate() {
+    public static void intermediate() {
         JOptionPane.showMessageDialog(null,"Multiply the answer of \"Step1\" by 10"
                 ,"Step2",JOptionPane.PLAIN_MESSAGE);
         JOptionPane.showMessageDialog(null,"Add 5 to your answer from \"Step2\""
@@ -75,7 +75,7 @@ public class GuessTheNumber {
         String input = JOptionPane.showInputDialog(null,"Give me the result of your calculations",
                 "Type your number", JOptionPane.QUESTION_MESSAGE);
 
-        boolean validInput = InputVerification(input);
+        boolean validInput = inputVerification(input);
 
         //undo all math operations to correctly guess number
         if (validInput){
@@ -87,9 +87,9 @@ public class GuessTheNumber {
         }
     }
     /**
-     * Expert difficulty setting, relies on InputVerification method to validate input
+     * expert difficulty setting, relies on inputVerificationinputVerification method to validate input
      */
-    public static void Expert() {
+    public static void expert() {
         //guide user to perform 3 mathematical operations on their number
         JOptionPane.showMessageDialog(null,"Multiply the answer of \"Step1\" by 10"
                 ,"Step2",JOptionPane.PLAIN_MESSAGE);
@@ -100,7 +100,7 @@ public class GuessTheNumber {
         String input = JOptionPane.showInputDialog(null,"Give me the result of your calculations",
                 "Type your number", JOptionPane.QUESTION_MESSAGE);
 
-        boolean validInput = InputVerification(input);
+        boolean validInput = inputVerification(input);
         //undo all math operations to correctly guess number
         if (validInput){
             double num = Double.parseDouble(input);
@@ -117,7 +117,7 @@ public class GuessTheNumber {
      * @param input is user's a number after user has performed mathematical operations on their number
      * @return true or false if input if valid
      */
-    public static boolean InputVerification (String input) {
+    public static boolean inputVerification(String input) {
         //error handling if user presses cancel
         if (input == null) {
             JOptionPane.showMessageDialog(null,"CANCEL was requested - nothing is done",
