@@ -56,6 +56,7 @@ public class GuessTheNumber {
                 "Type your number", JOptionPane.QUESTION_MESSAGE);
 
         boolean validInput = inputVerification(input);
+
         //undo all math operations to correctly guess number
         if (validInput){
             double num = Double.parseDouble(input);
@@ -101,6 +102,7 @@ public class GuessTheNumber {
                 "Type your number", JOptionPane.QUESTION_MESSAGE);
 
         boolean validInput = inputVerification(input);
+
         //undo all math operations to correctly guess number
         if (validInput){
             double num = Double.parseDouble(input);
