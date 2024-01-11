@@ -4,7 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f1582542-8469-43f0-add1-f9dab35e7ff8" name="Changes" comment="Initial Commit" />
+    <list default="true" id="f1582542-8469-43f0-add1-f9dab35e7ff8" name="Changes" comment="Initial Commit">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Assignment 1/GuessTheNumber.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Assignment 1/GuessTheNumber.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GuessTheNumber.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GuessTheNumber.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab 1/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -18,6 +23,19 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <favorite-branches>
+      <branch-storage>
+        <map>
+          <entry type="REMOTE">
+            <value>
+              <list>
+                <branch-info repo="$PROJECT_DIR$/.." source="Github/main" />
+              </list>
+            </value>
+          </entry>
+        </map>
+      </branch-storage>
+    </favorite-branches>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
     <option name="RESET_MODE" value="HARD" />
   </component>
@@ -95,6 +113,7 @@
       <workItem from="1704763774505" duration="599000" />
       <workItem from="1704765191832" duration="5754000" />
       <workItem from="1704777294636" duration="128000" />
+      <workItem from="1704777427904" duration="8994000" />
     </task>
     <task id="LOCAL-00001" summary="Initial Commit">
       <option name="closed" value="true" />
@@ -136,7 +155,15 @@
       <option name="project" value="LOCAL" />
       <updated>1704776869610</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Initial Commit">
+      <option name="closed" value="true" />
+      <created>1704777562577</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1704777562577</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -154,7 +181,18 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <MESSAGE value="Revert &quot;Initial commit&quot;&#10;&#10;This reverts commit 73cb8aba8abb9a704d2447231825a6393e7cafc4." />
     <MESSAGE value="Initial Commit" />
     <option name="LAST_COMMIT_MESSAGE" value="Initial Commit" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.StringIndexOutOfBoundsException" package="java.lang" />
+          <option name="timeStamp" value="1" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
