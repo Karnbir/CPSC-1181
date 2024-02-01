@@ -26,10 +26,19 @@ public class Student {
     public int getStudentsNum() {
         return STUDENT_NUM;
     }
+    /**
+     Updates student's file with the credits and grade point achieved by course
+     @param credits the number of credits the course is worth
+     @param gradePoints is the grade achieved in the course in grade point format.
+     */
     public void addCourse(int credits, double gradePoints) {
         this.credits += credits;
         this.gradePoints += gradePoints * credits; //grades are weighted based on credits
     }
+    /**
+     * Calculates GPA using student's gradepoints and credits from addCourse
+     @return the student's current GPA
+     */
     public double calculateGPA () {
         if (credits == 0) { //avoids divide by zero error
             return 0;
@@ -38,6 +47,10 @@ public class Student {
         }
     }
 
+    /**
+     Uses student's first name, last name, and student number to generate a login ID
+     @return loginId as a string for the student
+     */
     public String getLoginId() {
         String firstname = name.substring(0,1);
         String lastname = name.substring(name.indexOf(" ") + 1);
