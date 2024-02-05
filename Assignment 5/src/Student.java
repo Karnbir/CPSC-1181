@@ -4,7 +4,8 @@ public class Student {
      */
 
     private String name, address, loginId;
-    private int credits;
+    protected int credits;
+    private double creditFee = 107.62;
     private final int STUDENT_NUM;
     private double gradePoints;
 
@@ -63,5 +64,27 @@ public class Student {
         String genLogin = firstname + lastname + twoDigits;
         loginId = genLogin.toLowerCase();
         return loginId;
+    }
+
+    /**
+     * Calculates student's fees for a course based on number of credits
+     */
+    public double getTuitionFees() {
+        return credits * creditFee;
+    }
+
+    @Override
+    public String toString() {
+        return "Student: " + getName() +
+                "\n Address: " + getAddress() +
+                "\n LoginID: " + getLoginId() +
+                "\n Student Number: " + getStudentsNum() +
+                "\n GPA: " + calculateGPA() +
+                "\n Tuition Fees: $" + getTuitionFees();
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return toString().equals(other.toString());
     }
 }
