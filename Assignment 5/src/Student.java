@@ -85,6 +85,14 @@ public class Student {
 
     @Override
     public boolean equals(Object other) {
-        return toString().equals(other.toString());
+        if (other == null) {
+            return false;
+        }
+        if(getClass() != other.getClass()) {
+            return false;
+        }
+
+        Student otherS = (Student) other;
+        return toString().equals(otherS.toString());
     }
 }
