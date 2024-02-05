@@ -37,4 +37,16 @@ public class GraduateStudent extends Student {
                 "\n Research Topic: " + getResearchTopic() +
                 "\n Supervisor: " + getSupervisor();
     }
+
+    @Override
+    public boolean equals(Object otherObject) {
+        if (otherObject == null) {
+            return false;
+        }
+        if (otherObject.getClass()!= getClass()) {
+            return false;
+        }
+        GraduateStudent other = (GraduateStudent) otherObject;
+        return toString().equals(other.toString());
+    }
 }
