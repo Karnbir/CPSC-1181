@@ -302,7 +302,6 @@ public class CollegeTester {
      * @param name name of student as entered by user
      * @return true if name is valid, false if name is invalid
      */
-
     public static boolean validateName (String name) {
         name = name.trim();
 
