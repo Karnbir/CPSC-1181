@@ -95,6 +95,7 @@ public class CollegeTester {
             Scanner input = new Scanner(System.in);
             name = input.nextLine();
             valid = validateName(name);
+
         } while (!valid);
 
         if (valid) {
@@ -123,15 +124,18 @@ public class CollegeTester {
             Scanner input = new Scanner(System.in);
             name = input.nextLine();
             valid = validateName(name);
+
         } while (!valid);
 
         if (valid) {
             System.out.println("Please enter the student's address:");
             Scanner input = new Scanner(System.in);
             String address = input.nextLine();
+
             System.out.println("Please enter the student's country:");
             input = new Scanner(System.in);
             String country = input.nextLine();
+
             //construct international student object and send to college while printing the student's info
             Student newStudent = new InternationalStudent(name,address,country);
             System.out.println(langara.addStudent(newStudent));
@@ -153,18 +157,22 @@ public class CollegeTester {
             Scanner input = new Scanner(System.in);
             name = input.nextLine();
             valid = validateName(name);
+
         } while (!valid);
 
         if (valid) {
             System.out.println("Please enter the student's address:");
             Scanner input = new Scanner(System.in);
             String address = input.nextLine();
+
             System.out.println("Please enter the student's research topic:");
             input = new Scanner(System.in);
             String researchTopic = input.nextLine();
+
             System.out.println("Please enter the student supervisor's name:");
             input = new Scanner(System.in);
             String supervisor = input.nextLine();
+
             //construct Graduate student object and send to college while printing the student's info
             Student newStudent = new GraduateStudent(name,address,researchTopic,supervisor);
             System.out.println(langara.addStudent(newStudent));
@@ -251,6 +259,7 @@ public class CollegeTester {
      */
     public static void findHighestGPA(College langara) {
         String highestGPA = langara.highestGPA();
+
         if (!highestGPA.isEmpty()) {
             System.out.println(langara.highestGPA() + " has the highest GPA");
         } else {
@@ -350,16 +359,21 @@ public class CollegeTester {
         Scanner input = new Scanner(System.in);
         String studentNum = input.nextLine();
 
+        //validate first number and continue
         if (validStudentNum(langara, studentNum)) {
             int num1 = Integer.parseInt(studentNum);
             System.out.println("Please enter the other student's student number");
             input = new Scanner(System.in);
             String studentNum2 = input.nextLine();
+
+            //validate second number and continue
             if (validStudentNum(langara, studentNum2)) {
                 int num2 = Integer.parseInt(studentNum2);
                 Student one = langara.toString(num1);
                 Student two = langara.toString(num2);
-                boolean equals = one.equals(two);
+
+                boolean equals = one.equals(two); //call equals method
+
                 if (equals) {
                     System.out.println("Students are equal");
                 } else {
