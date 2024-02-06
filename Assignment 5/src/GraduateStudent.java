@@ -1,4 +1,7 @@
 public class GraduateStudent extends Student {
+    /**
+     * Graduate student is a class that adds graduate student specific functionality to student class
+     */
     private String researchTopic;
     private String supervisor;
 
@@ -31,6 +34,10 @@ public class GraduateStudent extends Student {
         return supervisor;
     }
 
+    /**
+     * Returns graduate student instance variables as String
+     * @return string block
+     */
     @Override
     public String toString() {
         return super.toString() +
@@ -38,6 +45,11 @@ public class GraduateStudent extends Student {
                 "\n Supervisor: " + getSupervisor();
     }
 
+    /**
+     * Checks to see if two graduate students are identical
+     * @param otherObject is other student object
+     * @return true or false if identical
+     */
     @Override
     public boolean equals(Object otherObject) {
         if (otherObject == null)

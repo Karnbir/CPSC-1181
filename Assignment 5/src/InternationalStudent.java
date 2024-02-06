@@ -1,4 +1,7 @@
 public class InternationalStudent extends Student {
+    /**
+     * International student is a class that adds international student functionality to student class
+     */
     private String country;
     private double creditFee = 637.91;
 
@@ -21,17 +24,30 @@ public class InternationalStudent extends Student {
         return country;
     }
 
+    /**
+     * Calculates student's fees based on number of credits taken
+     * @return fees as double
+     */
     @Override
     public double getTuitionFees() {
         return credits * creditFee;
     }
 
+    /**
+     * Returns international graduate student instance variables as string
+     * @return string block
+     */
     @Override
     public String toString() {
         return super.toString() +
                 "\n Country: " + getCountry();
     }
 
+    /**
+     * Checks to see if two international students are identical
+     * @param otherObject is other student object
+     * @return true or false if identical
+     */
     @Override
     public boolean equals(Object otherObject) {
         if (otherObject == null)

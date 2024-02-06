@@ -2,7 +2,6 @@ public class Student {
     /**
      * Student is a class to store and compute information about a student such as name address loginId and GPA
      */
-
     private String name, address, loginId;
     protected int credits;
     private double creditFee = 107.62;
@@ -12,6 +11,11 @@ public class Student {
     //nextStudentNum will be incremented each time a new student is created
     private static int nextStudentNum = 10000001;
 
+    /**
+     * Constructs Student object
+     * @param name student's name
+     * @param address student's address
+     */
     public Student(String name, String address) {
         this.name = name.trim();
         this.address = address.trim();
@@ -27,6 +31,7 @@ public class Student {
     public int getStudentsNum() {
         return STUDENT_NUM;
     }
+
     /**
      Updates student's file with the credits and grade point achieved by course
      @param credits the number of credits the course is worth
@@ -36,8 +41,9 @@ public class Student {
         this.credits += credits;
         this.gradePoints += gradePoints * credits; //grades are weighted based on credits
     }
+
     /**
-     * Calculates GPA using student's gradepoints and credits from addCourse
+     * Calculates GPA using student's grade points and credits from addCourse
      @return the student's current GPA
      */
     public double calculateGPA () {
@@ -67,12 +73,17 @@ public class Student {
     }
 
     /**
-     * Calculates student's fees for a course based on number of credits
+     * Calculates student's fees based on number of credits taken
+     * @return fees as double
      */
     public double getTuitionFees() {
         return credits * creditFee;
     }
 
+    /**
+     * Returns student specific instance variables as String
+     * @return string block
+     */
     @Override
     public String toString() {
         return "Student: " + getName() +
@@ -83,6 +94,11 @@ public class Student {
                 "\n Tuition Fees: $" + getTuitionFees();
     }
 
+    /**
+     * Checks to see if two students are identical
+     * @param otherObject is other student object
+     * @return true or false if identical
+     */
     @Override
     public boolean equals(Object otherObject) {
         if (otherObject == null) {

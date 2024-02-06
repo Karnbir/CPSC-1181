@@ -2,7 +2,7 @@
  * Program Name: College Tester
  * Author Name: Karnbir Randhawa
  * Course: CPSC 1181
- * Date: January 25, 2024
+ * Date: February 5, 2024
  * JDK: 21
  */
 
@@ -12,6 +12,7 @@ public class CollegeTester {
      * This program is to test the proper functionality of college.java class, it attempts to achieve full code
      * coverage of the class by presenting a menu to a user to test each capability of the class.
      */
+
     public static void main(String[] args) {
         boolean repeat = true;
 
@@ -21,8 +22,7 @@ public class CollegeTester {
         do {
             Scanner input = new Scanner(System.in);
             System.out.println("""
-
-                    Please choose an option from the menu:
+                    \nPlease choose an option from the menu:
                     1. Add a Student
                     2. Remove a Student
                     3. Look up a Student
@@ -47,7 +47,7 @@ public class CollegeTester {
                     case 9: repeat = false;break;
                     default: throw new InputMismatchException();
                 }
-            } catch (InputMismatchException e) {
+            } catch (InputMismatchException exception) {
                 System.out.println("ERROR: Please only enter a number shown on the menu");
             }
         } while (repeat);
@@ -55,9 +55,7 @@ public class CollegeTester {
     }
 
     /**
-     * This method tests add student function and does error handing within the method to make sure college class
-     * gets an appropriate input
-     *
+     * This method prints a menu of the type of student the user wishes to add and then activates the relevant method
      * @param langara is an object of college class
      */
     public static void addStudent(College langara) {
@@ -71,15 +69,9 @@ public class CollegeTester {
 
         try {
             switch (choice) {
-                case (1):
-                    addDomesticStudent(langara);
-                    break;
-                case (2):
-                    addInternationalStudent(langara);
-                    break;
-                case (3):
-                    addGraduateStudent(langara);
-                    break;
+                case (1): addDomesticStudent(langara); break;
+                case (2): addInternationalStudent(langara); break;
+                case (3): addGraduateStudent(langara); break;
                 default:
                     throw new InputMismatchException();
             }
@@ -88,6 +80,11 @@ public class CollegeTester {
         }
     }
 
+    /**
+     * This method tests add student function and does error handing within the method to make sure college class
+     * gets an appropriate input
+     * @param langara is an object of college class
+     */
     public static void addDomesticStudent(College langara) {
         boolean valid;
         String name;
@@ -104,7 +101,9 @@ public class CollegeTester {
             System.out.println("Please enter the student's address:");
             Scanner input = new Scanner(System.in);
             String address = input.nextLine();
-            Student newStudent = new Student(name,address);//construct student object
+
+            //construct student object and send to college while printing the student's info
+            Student newStudent = new Student(name,address);
             System.out.println(langara.addStudent(newStudent));
         }
     }
@@ -112,7 +111,6 @@ public class CollegeTester {
     /**
      * This method tests add international student function and does error handing within the method to make sure college class
      * gets an appropriate input
-     *
      * @param langara is an object of college class
      */
     public static void addInternationalStudent(College langara) {
@@ -121,7 +119,6 @@ public class CollegeTester {
 
         //check if name is valid
         do {
-            valid = true;
             System.out.println("Please enter the student's first and last name:");
             Scanner input = new Scanner(System.in);
             name = input.nextLine();
@@ -135,6 +132,7 @@ public class CollegeTester {
             System.out.println("Please enter the student's country:");
             input = new Scanner(System.in);
             String country = input.nextLine();
+            //construct international student object and send to college while printing the student's info
             Student newStudent = new InternationalStudent(name,address,country);
             System.out.println(langara.addStudent(newStudent));
         }
@@ -143,7 +141,6 @@ public class CollegeTester {
     /**
      * This method tests add graduate student function and does error handing within the method to make sure college class
      * gets an appropriate input
-     *
      * @param langara is an object of college class
      */
     public static void addGraduateStudent(College langara) {
@@ -152,7 +149,6 @@ public class CollegeTester {
 
         //check if name is valid
         do {
-            valid = true;
             System.out.println("Please enter the student's first and last name:");
             Scanner input = new Scanner(System.in);
             name = input.nextLine();
@@ -169,6 +165,7 @@ public class CollegeTester {
             System.out.println("Please enter the student supervisor's name:");
             input = new Scanner(System.in);
             String supervisor = input.nextLine();
+            //construct Graduate student object and send to college while printing the student's info
             Student newStudent = new GraduateStudent(name,address,researchTopic,supervisor);
             System.out.println(langara.addStudent(newStudent));
         }
@@ -176,7 +173,6 @@ public class CollegeTester {
 
     /**
      * Allows user to remove a student using a student number
-     *
      * @param langara is an object of college class
      */
     public static void removeStudent(College langara) {
@@ -193,7 +189,6 @@ public class CollegeTester {
 
     /**
      * Allows user to look up a student in the college class using student number
-     *
      * @param langara is an object of college
      */
     public static void lookUpStudent(College langara) {
@@ -209,7 +204,6 @@ public class CollegeTester {
 
     /**
      * Allows user to add a course to a student's record from college class using student number
-     *
      * @param langara is an object of college class
      */
     public static void addCourse(College langara) {
@@ -220,7 +214,6 @@ public class CollegeTester {
         if (validStudentNum(langara, studentNum)) {
             int num = Integer.parseInt(studentNum);
 
-            //System.out.println("Opening " + langara.toString(num) + "'s file");
             System.out.println("Please enter the number of credits the course is worth");
             input = new Scanner(System.in);
             int credit = input.nextInt();
@@ -239,7 +232,6 @@ public class CollegeTester {
 
     /**
      * Finds a student's loginID using college class
-     *
      * @param langara is an object of college class
      */
     public static void getLoginID(College langara) {
@@ -255,7 +247,6 @@ public class CollegeTester {
 
     /**
      * Finds the student with the highestGPA in the college class, no additional input required from user
-     *
      * @param langara is an object of college class
      */
     public static void findHighestGPA(College langara) {
@@ -269,7 +260,6 @@ public class CollegeTester {
 
     /**
      * Validates if student number is properly formatted and present in the college class
-     *
      * @param langara    is object of college
      * @param studentNum is a string entered by user representing the student's number
      * @return true if student number is valid, if false, prints messages to console and return false
@@ -299,17 +289,28 @@ public class CollegeTester {
         }
 
         //check if  student number is present in college
-        String notFound = "Student not found";
-        if (notFound.equals(langara.toString(num))) {
-            System.out.println("ERROR: " + notFound);
+        if (langara.toString(num) == null) {
+            System.out.println("ERROR: Student not found!");
             return false;
         } else {
             return true;
         }
     }
 
+    /**
+     * Checks for valid name input
+     * @param name name of student as entered by user
+     * @return true if name is valid, false if name is invalid
+     */
+
     public static boolean validateName (String name) {
         name = name.trim();
+
+        if (name.isEmpty()) {
+            System.out.println("ERROR: Name cannot be empty");
+            return false;
+        }
+
         int space = 0;
         for (int i = 0; i < name.length(); i++) {
             if (Character.isDigit(name.charAt(i))) {
@@ -326,6 +327,10 @@ public class CollegeTester {
         } return true;
     }
 
+    /**
+     * Calculates tuition fee for student in college from student number
+     * @param langara is a college object passed from main
+     */
     public static void getTuitionFees(College langara) {
         System.out.println("Please enter the student's student number");
         Scanner input = new Scanner(System.in);
@@ -337,6 +342,10 @@ public class CollegeTester {
         }
     }
 
+    /**
+     * Tests equals method from student classes, lets user compare two students using student number
+     * @param langara is a college object
+     */
     public static void equalsTest(College langara) {
         System.out.println("Please enter the student's student number");
         Scanner input = new Scanner(System.in);
