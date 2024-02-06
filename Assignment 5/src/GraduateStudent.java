@@ -40,13 +40,16 @@ public class GraduateStudent extends Student {
 
     @Override
     public boolean equals(Object otherObject) {
-        if (otherObject == null) {
+        if (otherObject == null)
+                return false;
+        if (getClass() != otherObject.getClass())
             return false;
-        }
-        if (otherObject.getClass()!= getClass()) {
-            return false;
-        }
         GraduateStudent other = (GraduateStudent) otherObject;
-        return toString().equals(other.toString());
+
+        return super.getName().equals(other.getName()) &&
+                super.getAddress().equals(other.getAddress()) &&
+                super.calculateGPA() == other.calculateGPA() &&
+                researchTopic.equals(other.getResearchTopic()) &&
+                supervisor.equals(other.getSupervisor());
     }
 }

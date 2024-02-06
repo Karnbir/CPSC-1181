@@ -33,7 +33,17 @@ public class InternationalStudent extends Student {
     }
 
     @Override
-    public boolean equals(Object other) {
-        return toString().equals(other.toString());
+    public boolean equals(Object otherObject) {
+        if (otherObject == null)
+                return false;
+        if (getClass() != otherObject.getClass())
+            return false;
+
+        InternationalStudent other = (InternationalStudent) otherObject;
+
+        return super.getName().equals(other.getName()) &&
+                super.getAddress().equals(other.getAddress()) &&
+                super.calculateGPA() == other.calculateGPA() &&
+                country.equals(getCountry());
     }
 }

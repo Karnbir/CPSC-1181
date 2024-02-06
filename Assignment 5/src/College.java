@@ -19,21 +19,11 @@ public class College {
 
 
     /**
-     * Adds a student object to arraylist
-     *
-     * @param name    passed from user
-     * @param address passed from user
+     * Adds a student object to arraylist and returns a string showing student info
      */
-    public void addDomesticStudent(String name, String address) {
-        list.add(new Student(name, address));
-    }
-
-    public void addInternationalStudent(String name, String address, String country) {
-        list.add(new InternationalStudent(name, address, country));
-    }
-
-    public void addGraduateStudent(String name, String address, String researchTopic, String supervisor) {
-        list.add(new GraduateStudent(name, address, researchTopic, supervisor));
+    public String addStudent(Student studentObj) {
+        list.add(studentObj);
+        return list.getLast().toString();
     }
 
     /**

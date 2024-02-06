@@ -32,40 +32,22 @@ public class CollegeTester {
                     7. Calculate Tuition Fees for a Student
                     8. Compare Student
                     9. Exit Program""");
+            try {
             int choice = input.nextInt();
 
-            //error handing if user inputs a number that is not on the menu
-            if (choice >= 1 && choice <= 9) {
                 switch (choice) {
-                    case 1:
-                        addStudent(langara);
-                        break;
-                    case 2:
-                        removeStudent(langara);
-                        break;
-                    case 3:
-                        lookUpStudent(langara);
-                        break;
-                    case 4:
-                        addCourse(langara);
-                        break;
-                    case 5:
-                        getLoginID(langara);
-                        break;
-                    case 6:
-                        findHighestGPA(langara);
-                        break;
-                    case 7:
-                        getTuitionFees(langara);
-                        break;
-                    case 8:
-                        equalsTest(langara);
-                        break;
-                    case 9:
-                        repeat = false;
-                        break;
+                    case 1: addStudent(langara); break;
+                    case 2: removeStudent(langara); break;
+                    case 3: lookUpStudent(langara); break;
+                    case 4: addCourse(langara); break;
+                    case 5: getLoginID(langara); break;
+                    case 6: findHighestGPA(langara); break;
+                    case 7: getTuitionFees(langara); break;
+                    case 8: equalsTest(langara); break;
+                    case 9: repeat = false;break;
+                    default: throw new InputMismatchException();
                 }
-            } else {
+            } catch (InputMismatchException e) {
                 System.out.println("ERROR: Please only enter a number shown on the menu");
             }
         } while (repeat);
@@ -112,35 +94,18 @@ public class CollegeTester {
 
         //check if name is valid
         do {
-            valid = true;
             System.out.println("Please enter the student's first and last name:");
             Scanner input = new Scanner(System.in);
             name = input.nextLine();
-            name = name.trim();
-            int space = 0;
-            for (int i = 0; i < name.length(); i++) {
-                if (Character.isDigit(name.charAt(i))) {
-                    valid = false;
-                    System.out.println("ERROR: Numbers are not allowed in the name");
-                    break;
-                }
-                if (name.charAt(i) == ' ') {
-                    space++;
-                    if (space > 1) {
-                        valid = false;
-                        System.out.println("ERROR: Please only enter a first and last name seperated by 1 space");
-                        break;
-                    }
-                }
-            }
+            valid = validateName(name);
         } while (!valid);
 
         if (valid) {
             System.out.println("Please enter the student's address:");
             Scanner input = new Scanner(System.in);
             String address = input.nextLine();
-            langara.addDomesticStudent(name, address);
-            System.out.println("Student: " + name + " has been added");
+            Student newStudent = new Student(name,address);//construct student object
+            System.out.println(langara.addStudent(newStudent));
         }
     }
 
@@ -160,23 +125,7 @@ public class CollegeTester {
             System.out.println("Please enter the student's first and last name:");
             Scanner input = new Scanner(System.in);
             name = input.nextLine();
-            name = name.trim();
-            int space = 0;
-            for (int i = 0; i < name.length(); i++) {
-                if (Character.isDigit(name.charAt(i))) {
-                    valid = false;
-                    System.out.println("ERROR: Numbers are not allowed in the name");
-                    break;
-                }
-                if (name.charAt(i) == ' ') {
-                    space++;
-                    if (space > 1) {
-                        valid = false;
-                        System.out.println("ERROR: Please only enter a first and last name seperated by 1 space");
-                        break;
-                    }
-                }
-            }
+            valid = validateName(name);
         } while (!valid);
 
         if (valid) {
@@ -186,8 +135,8 @@ public class CollegeTester {
             System.out.println("Please enter the student's country:");
             input = new Scanner(System.in);
             String country = input.nextLine();
-            langara.addInternationalStudent(name, address, country);
-            System.out.println("Student: " + name + " has been added");
+            Student newStudent = new InternationalStudent(name,address,country);
+            System.out.println(langara.addStudent(newStudent));
         }
     }
 
@@ -207,23 +156,7 @@ public class CollegeTester {
             System.out.println("Please enter the student's first and last name:");
             Scanner input = new Scanner(System.in);
             name = input.nextLine();
-            name = name.trim();
-            int space = 0;
-            for (int i = 0; i < name.length(); i++) {
-                if (Character.isDigit(name.charAt(i))) {
-                    valid = false;
-                    System.out.println("ERROR: Numbers are not allowed in the name");
-                    break;
-                }
-                if (name.charAt(i) == ' ') {
-                    space++;
-                    if (space > 1) {
-                        valid = false;
-                        System.out.println("ERROR: Please only enter a first and last name seperated by 1 space");
-                        break;
-                    }
-                }
-            }
+            valid = validateName(name);
         } while (!valid);
 
         if (valid) {
@@ -236,8 +169,8 @@ public class CollegeTester {
             System.out.println("Please enter the student supervisor's name:");
             input = new Scanner(System.in);
             String supervisor = input.nextLine();
-            langara.addGraduateStudent(name, address, researchTopic, supervisor);
-            System.out.println("Student: " + name + " has been added");
+            Student newStudent = new GraduateStudent(name,address,researchTopic,supervisor);
+            System.out.println(langara.addStudent(newStudent));
         }
     }
 
@@ -253,7 +186,7 @@ public class CollegeTester {
 
         if (validStudentNum(langara, studentNum)) {
             int num = Integer.parseInt(studentNum);
-            System.out.println(langara.toString(num) + " removed");
+            System.out.println(langara.toString(num) + "\nHas been removed!");
             langara.deleteStudent(num);
         }
     }
@@ -373,6 +306,24 @@ public class CollegeTester {
         } else {
             return true;
         }
+    }
+
+    public static boolean validateName (String name) {
+        name = name.trim();
+        int space = 0;
+        for (int i = 0; i < name.length(); i++) {
+            if (Character.isDigit(name.charAt(i))) {
+                System.out.println("ERROR: Numbers are not allowed in the name");
+                return false;
+            }
+            if (name.charAt(i) == ' ') {
+                space++;
+                if (space > 1) {
+                    System.out.println("ERROR: Please only enter a first and last name seperated by 1 space");
+                    return false;
+                }
+            }
+        } return true;
     }
 
     public static void getTuitionFees(College langara) {

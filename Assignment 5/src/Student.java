@@ -92,6 +92,8 @@ public class Student {
             return false;
         }
         Student other = (Student) otherObject;
-        return toString().equals(other.toString());
+        return name.equals(other.getName())
+                && address.equals(other.getAddress())
+                && calculateGPA() == other.calculateGPA();
     }
 }
