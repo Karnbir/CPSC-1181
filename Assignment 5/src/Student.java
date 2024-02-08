@@ -17,7 +17,7 @@ public class Student {
      * @param address student's address
      */
     public Student(String name, String address) {
-        this.name = name.trim();
+        this.name = verifyName(name);
         this.address = address.trim();
         STUDENT_NUM = nextStudentNum++; //increment student num by 1 after generating student
     }
@@ -111,5 +111,23 @@ public class Student {
         return name.equals(other.getName())
                 && address.equals(other.getAddress())
                 && calculateGPA() == other.calculateGPA();
+    }
+
+    private String verifyName(String input) {
+        input.trim();
+        if (input.isEmpty()) {
+            throw new StudentException("ERROR: Name is cannot be empty");
+        }
+        for (int i = 0; i < input.length(); i++) {
+            if (Character.isDigit(input.charAt(i))) {
+                throw new StudentException("ERROR: No digits allowed in name");
+            }
+        }
+
+        String [] nameArray = input.split(" ");
+        if ((nameArray.length) != 2) {
+             throw new StudentException("ERROR: Only first and last name allowed");
+         }
+        return input;
     }
 }
