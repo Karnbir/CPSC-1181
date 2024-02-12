@@ -30,7 +30,7 @@ public class InternationalStudent extends Student {
      */
     @Override
     public double getTuitionFees() {
-        return credits * creditFee;
+        return super.credits * creditFee;
     }
 
     /**
@@ -57,9 +57,6 @@ public class InternationalStudent extends Student {
 
         InternationalStudent other = (InternationalStudent) otherObject;
 
-        return super.getName().equals(other.getName()) &&
-                super.getAddress().equals(other.getAddress()) &&
-                super.calculateGPA() == other.calculateGPA() &&
-                country.equals(getCountry());
+        return super.equals(other) && country.equalsIgnoreCase(other.country);
     }
 }

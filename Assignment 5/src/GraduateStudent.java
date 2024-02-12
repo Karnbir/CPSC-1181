@@ -58,10 +58,8 @@ public class GraduateStudent extends Student {
             return false;
         GraduateStudent other = (GraduateStudent) otherObject;
 
-        return super.getName().equals(other.getName()) &&
-                super.getAddress().equals(other.getAddress()) &&
-                super.calculateGPA() == other.calculateGPA() &&
-                researchTopic.equals(other.getResearchTopic()) &&
-                supervisor.equals(other.getSupervisor());
+        return super.equals(other)
+                && researchTopic.equalsIgnoreCase(researchTopic)
+                && supervisor.equalsIgnoreCase(researchTopic);
     }
 }

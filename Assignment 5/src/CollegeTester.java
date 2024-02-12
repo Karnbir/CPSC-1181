@@ -49,8 +49,6 @@ public class CollegeTester {
                 }
             } catch (InputMismatchException exception) {
                 System.out.println("ERROR: Please only enter a number shown on the menu");
-            } catch (StudentException exception) {
-                System.out.println(exception.getMessage());
             }
         } while (repeat);
 
@@ -68,11 +66,17 @@ public class CollegeTester {
                 3. Graduate Student""");
         Scanner input = new Scanner(System.in);
         int choice = input.nextInt();
-        switch (choice) {
-            case (1): addDomesticStudent(langara); break;
-            case (2): addInternationalStudent(langara); break;
-            case (3): addGraduateStudent(langara); break;
-            default: throw new InputMismatchException();
+
+        try {
+            switch (choice) {
+                case (1): addDomesticStudent(langara); break;
+                case (2): addInternationalStudent(langara); break;
+                case (3): addGraduateStudent(langara); break;
+                default:
+                    throw new InputMismatchException();
+            }
+        } catch (InputMismatchException exception) {
+            System.out.println("ERROR:Please only enter an option shown on the menu");
         }
     }
 
@@ -82,16 +86,27 @@ public class CollegeTester {
      * @param langara is an object of college class
      */
     public static void addDomesticStudent(College langara) {
-        System.out.println("Please enter the student's first and last name:");
-        Scanner input = new Scanner(System.in);
-        String name = input.nextLine();
-        System.out.println("Please enter the student's address:");
-        input = new Scanner(System.in);
-        String address = input.nextLine();
+        boolean valid;
+        String name;
 
-        //construct student object and send to college while printing the student's info
-        Student newStudent = new Student(name,address);
-        System.out.println(langara.addStudent(newStudent));
+        //check if name is valid
+        do {
+            System.out.println("Please enter the student's first and last name:");
+            Scanner input = new Scanner(System.in);
+            name = input.nextLine();
+            valid = validateName(name);
+
+        } while (!valid);
+
+        if (valid) {
+            System.out.println("Please enter the student's address:");
+            Scanner input = new Scanner(System.in);
+            String address = input.nextLine();
+
+            //construct student object and send to college while printing the student's info
+            Student newStudent = new Student(name,address);
+            System.out.println(langara.addStudent(newStudent));
+        }
     }
 
     /**
@@ -100,21 +115,31 @@ public class CollegeTester {
      * @param langara is an object of college class
      */
     public static void addInternationalStudent(College langara) {
-        System.out.println("Please enter the student's first and last name:");
-        Scanner input = new Scanner(System.in);
-        String name = input.nextLine();
+        boolean valid;
+        String name;
 
-        System.out.println("Please enter the student's address:");
-        input = new Scanner(System.in);
-        String address = input.nextLine();
+        //check if name is valid
+        do {
+            System.out.println("Please enter the student's first and last name:");
+            Scanner input = new Scanner(System.in);
+            name = input.nextLine();
+            valid = validateName(name);
 
-        System.out.println("Please enter the student's country:");
-        input = new Scanner(System.in);
-        String country = input.nextLine();
+        } while (!valid);
 
-        //construct international student object and send to college while printing the student's info
-        Student newStudent = new InternationalStudent(name,address,country);
-        System.out.println(langara.addStudent(newStudent));
+        if (valid) {
+            System.out.println("Please enter the student's address:");
+            Scanner input = new Scanner(System.in);
+            String address = input.nextLine();
+
+            System.out.println("Please enter the student's country:");
+            input = new Scanner(System.in);
+            String country = input.nextLine();
+
+            //construct international student object and send to college while printing the student's info
+            Student newStudent = new InternationalStudent(name,address,country);
+            System.out.println(langara.addStudent(newStudent));
+        }
     }
 
     /**
@@ -123,25 +148,35 @@ public class CollegeTester {
      * @param langara is an object of college class
      */
     public static void addGraduateStudent(College langara) {
-        System.out.println("Please enter the student's first and last name:");
-        Scanner input = new Scanner(System.in);
-        String name = input.nextLine();
+        boolean valid;
+        String name;
 
-        System.out.println("Please enter the student's address:");
-        input = new Scanner(System.in);
-        String address = input.nextLine();
+        //check if name is valid
+        do {
+            System.out.println("Please enter the student's first and last name:");
+            Scanner input = new Scanner(System.in);
+            name = input.nextLine();
+            valid = validateName(name);
 
-        System.out.println("Please enter the student's research topic:");
-        input = new Scanner(System.in);
-        String researchTopic = input.nextLine();
+        } while (!valid);
 
-        System.out.println("Please enter the student supervisor's name:");
-        input = new Scanner(System.in);
-        String supervisor = input.nextLine();
+        if (valid) {
+            System.out.println("Please enter the student's address:");
+            Scanner input = new Scanner(System.in);
+            String address = input.nextLine();
 
-        //construct Graduate student object and send to college while printing the student's info
-        Student newStudent = new GraduateStudent(name,address,researchTopic,supervisor);
-        System.out.println(langara.addStudent(newStudent));
+            System.out.println("Please enter the student's research topic:");
+            input = new Scanner(System.in);
+            String researchTopic = input.nextLine();
+
+            System.out.println("Please enter the student supervisor's name:");
+            input = new Scanner(System.in);
+            String supervisor = input.nextLine();
+
+            //construct Graduate student object and send to college while printing the student's info
+            Student newStudent = new GraduateStudent(name,address,researchTopic,supervisor);
+            System.out.println(langara.addStudent(newStudent));
+        }
     }
 
     /**
@@ -269,6 +304,35 @@ public class CollegeTester {
         } else {
             return true;
         }
+    }
+
+    /**
+     * Checks for valid name input
+     * @param name name of student as entered by user
+     * @return true if name is valid, false if name is invalid
+     */
+    public static boolean validateName (String name) {
+        name = name.trim();
+
+        if (name.isEmpty()) {
+            System.out.println("ERROR: Name cannot be empty");
+            return false;
+        }
+
+        int space = 0;
+        for (int i = 0; i < name.length(); i++) {
+            if (Character.isDigit(name.charAt(i))) {
+                System.out.println("ERROR: Numbers are not allowed in the name");
+                return false;
+            }
+            if (name.charAt(i) == ' ') {
+                space++;
+                if (space > 1) {
+                    System.out.println("ERROR: Please only enter a first and last name seperated by 1 space");
+                    return false;
+                }
+            }
+        } return true;
     }
 
     /**
