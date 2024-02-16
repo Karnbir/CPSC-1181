@@ -22,7 +22,7 @@ public class JavaFXTree extends Application {
         Ellipse leaves = new Ellipse(150,220,40,60);
         leaves.setFill(Color.rgb(30,120,80));
 
-        Color [] colors = {Color.RED,Color.YELLOW,Color.ORANGE,Color.GREEN,Color.BLUE,Color.PURPLE,Color.INDIGO};
+        Color [] colors = {Color.RED,Color.ORANGE,Color.YELLOW,Color.GREEN,Color.BLUE,Color.INDIGO,Color.PURPLE};
         int offset = 0;
 
         Pane root = new Pane();
