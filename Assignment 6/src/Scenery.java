@@ -48,7 +48,7 @@ public class Scenery extends Application {
         Color [] rainbow = {Color.RED,Color.ORANGE,Color.YELLOW,Color.BLUE,Color.INDIGO,Color.PURPLE};
         int offset = 0;
         for (Color c : rainbow) {
-            Ellipse temp = new Ellipse(300,420 + offset,360,360);
+            Ellipse temp = new Ellipse(300,420,360-offset,360-offset);
             temp.setFill(Color.TRANSPARENT);
             temp.setStrokeWidth(7);
             temp.setStroke(c);
