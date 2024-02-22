@@ -5,7 +5,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
-public class Animal {
+public class Cat {
     /**
      * This class creates a cat animal using JavaFX
      */
@@ -18,7 +18,7 @@ public class Animal {
      * @param x axis coordinate to place the generated cat
      * @param y axis coordinate to place the generated cat
      */
-    public Animal(int x, int y) {
+    public Cat(int x, int y) {
 
         //for code reuse for the colour of the fur
         Color fur = Color.rgb(157,134,100);

@@ -25,7 +25,7 @@ public class Scenery extends Application {
     }
 
     /**
-     * This method creates the JavaFX scene featuring trees, a rainbow, and an animal
+     * This method creates the JavaFX scene featuring trees, a rainbow, and a cat
      */
     @Override
     public void start(Stage primaryStage) {
@@ -56,7 +56,7 @@ public class Scenery extends Application {
             offset += 7; //to make sure colours don't overlap
         }
 
-        Animal simba = new Animal(420,400);
+        Cat simba = new Cat(420,400);
         root.getChildren().addAll(simba.getAllNodes());
 
         Scene scene = new Scene(root, 600, 500);
