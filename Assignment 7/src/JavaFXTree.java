@@ -1,3 +1,11 @@
+/**
+ * Program Name: JavaFXTree
+ * Author: Karnbir Randhawa
+ * Date: March 10, 2024
+ * Course: CPSC 1181
+ * JDK: BellSoft Liberica JDK 21 Full
+ */
+
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -20,6 +28,9 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class JavaFXTree extends Application {
+    /**
+     * This program creates an interactive JavaFX application with a tree, rainbow, and a smiley.
+     */
     private Group rainbow, smile, tree;
     private CheckBox rainbowCB, smileCB;
     private Button changeText;
@@ -28,6 +39,10 @@ public class JavaFXTree extends Application {
     private RadioButton $0Degree, $90Degree, $180Degree, $270Degree;
     private ToggleGroup radioToggleGroup;
 
+    /**
+     * This method initializes the JavaFX stage and adds everything to the scene graph.
+     * @param primaryStage the primary stage for this application
+     */
     @Override
     public void start(Stage primaryStage) {
 
@@ -35,6 +50,9 @@ public class JavaFXTree extends Application {
         VBox controlPanel = new VBox(5);
         controlPanel.setPrefSize(200, 400);
 
+        /**
+         * This inner class defines the action event for the close button
+         */
         class Close implements EventHandler<ActionEvent> {
             @Override
             public void handle(ActionEvent e) {
@@ -47,12 +65,14 @@ public class JavaFXTree extends Application {
         HBox bottom = new HBox(close);
         bottom.setAlignment(Pos.BOTTOM_RIGHT);
 
+        //Border pane will be the root of the scene graph and everything will be added to it
         BorderPane root = new BorderPane();
 
         root.setCenter(viewport);
         root.setLeft(controlPanel);
         root.setBottom(bottom);
 
+        //code for building the elements shown on viewport pane (tree with a rainbow and a smiley)
         Rectangle ground = new Rectangle(0, 350, 400, 100);
         ground.setFill(Color.DARKGREEN);
 
@@ -94,12 +114,13 @@ public class JavaFXTree extends Application {
         smile.getChildren().add(new Ellipse(290, 80, 10, 20));
         smile.setVisible(false);
 
+        //to prevent viewport elements from being visible on the control panel
         Rectangle clip = new Rectangle(0, 0, 400, 430);
         viewport.setClip(clip);
 
         viewport.getChildren().addAll(ground, tree, rainbow, smile, text);
 
-
+        //code for the control panel
         Text background = new Text("Background");
         HBox bgText = new HBox(background);
         bgText.setPadding(new Insets(10));
@@ -149,7 +170,7 @@ public class JavaFXTree extends Application {
 
         controlPanel.getChildren().addAll(bgText, checkBoxes, radioButtons, captionAlign, textBoxAlign, changeTextAlign);
 
-
+        //Add everything to the scene graph and show it
         Scene scene = new Scene(root, 600, 456);
         primaryStage.setTitle("FXShapes");
         primaryStage.setScene(scene);
@@ -157,6 +178,9 @@ public class JavaFXTree extends Application {
         primaryStage.show();
     }
 
+    /**
+     * This inner class defines the action events for rainbow and smile visibility.
+     */
     private class CheckBoxEvent implements EventHandler<ActionEvent> {
         @Override
         public void handle(ActionEvent e) {
@@ -178,6 +202,9 @@ public class JavaFXTree extends Application {
         }
     }
 
+    /**
+     * This inner class defines the action events for rotating the tree.
+     */
     private class RadioBoxEvent implements EventHandler<ActionEvent> {
         @Override
         public void handle(ActionEvent e) {
@@ -196,6 +223,9 @@ public class JavaFXTree extends Application {
         }
     }
 
+    /**
+     * This inner class defines the action events for updated the text shown on the viewport
+     */
     private class TextChanger implements EventHandler<ActionEvent> {
         @Override
         public void handle(ActionEvent e) {
@@ -203,6 +233,9 @@ public class JavaFXTree extends Application {
         }
     }
 
+    /**
+     * This is the main class to launch the JavaFX application.
+     */
     public static void main(String[] args) {
         launch(args);
     }
