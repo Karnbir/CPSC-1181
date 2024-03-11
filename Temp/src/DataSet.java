@@ -1,32 +1,31 @@
 public class DataSet {
-    private double sum;
-    private Measurable maximum;
-    private int count;
+    Measure measure;
+    Object maximum;
 
-    public DataSet() {
-        sum =0;
-        count = 0;
+    Double largestArea;
+
+    public DataSet(Measure measurer) {
         maximum = null;
+        measure = measurer;
     }
 
-    public void add (Measurable x) {
-        sum = sum + x.getMeasure();
-
-        if (count == 0 || maximum.getMeasure() < x.getMeasure())
-            maximum = x;
-
-        count++;
+    public void changeMeasurer(Measure measurer){
+        measure = measurer;
     }
 
-    public double getAverage() {
-        if (count == 0)
-            return 0;
-        else
-            return sum / count;
+    public void add(Object anObj) {
+        if (maximum == null) {
+            largestArea = measure.getMeasure(anObj);
+            maximum = anObj;
+        }
+
+        if (largestArea < measure.getMeasure(anObj)) {
+            maximum = anObj;
+            largestArea = measure.getMeasure(anObj);
+        }
     }
 
-    public Measurable getMaximum() {
-        return maximum;
+    public void showLargest() {
+        System.out.println("The largest shape is a " + maximum.getClass().getName() +" with an area of " + largestArea);
     }
-
 }

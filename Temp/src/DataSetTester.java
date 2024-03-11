@@ -1,25 +1,44 @@
+import javafx.scene.shape.Circle;
+import javafx.scene.shape.Rectangle;
+
+import javax.xml.crypto.Data;
+
 public class DataSetTester {
-    public static void main(String[] args) {
-        DataSet bankData = new DataSet();
+    public static void main (String [] args) {
+         class RectMeasure implements Measure {
+            @Override
+            public double getMeasure(Object anObj) {
 
-        bankData.add(new Account(200));
-        bankData.add(new Account());
-        bankData.add(new Account(100.25));
-        bankData.add(new Account(15.25));
-        bankData.add(new Account(1000.25));
+                double area;
 
-        System.out.println("Average balance = "
-                + bankData.getAverage());
+                Rectangle temp = (Rectangle)anObj;
 
-        Measurable max = bankData.getMaximum();
-        System.out.println("Highest balance = "
-                + max.getMeasure());
+                area = temp.getWidth()*temp.getHeight();
+                return area;
+            }
+        }
 
-        Account acc = (Account) max;
-        System.out.println("Look at this one" + acc.withdraw(5.0));
-        System.out.println("Look at this one " + max);
-        System.out.println("Account with the highest balance = "
-                + acc.getBalance());
-        System.out.println("Max = " + acc);
+        class CircleMeasure implements Measure {
+             @Override
+            public double getMeasure(Object anObj) {
+                 double area;
+                 Circle temp = (Circle)anObj;
+
+                 area = Math.PI*Math.pow(temp.getRadius(),2);
+                 return area;
+             }
+        }
+
+        Measure r = new RectMeasure();
+         DataSet data = new DataSet(r);
+
+         data.add(new Rectangle(7,2));
+
+         Measure c = new CircleMeasure();
+         data.changeMeasurer(c);
+         data.add(new Circle(5));
+
+         data.showLargest();
+
     }
 }
