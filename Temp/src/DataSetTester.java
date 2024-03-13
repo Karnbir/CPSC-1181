@@ -1,8 +1,6 @@
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 
-import javax.xml.crypto.Data;
-
 public class DataSetTester {
     public static void main (String [] args) {
          class RectMeasure implements Measure {
