@@ -1,3 +1,6 @@
+import javafx.scene.shape.Circle;
+import javafx.scene.shape.Rectangle;
+
 public class DataSet {
     Measure measure;
     Object maximum;
@@ -17,6 +20,19 @@ public class DataSet {
         if (maximum == null) {
             largestArea = measure.getMeasure(anObj);
             maximum = anObj;
+        }
+
+        if (anObj instanceof Measure){
+            System.out.println("Instance of Measure");
+        }
+        if (anObj instanceof Measure){
+            System.out.println("Instance of Measure");
+        }
+        if (anObj instanceof Circle){
+            System.out.println("Instance of Circle");
+        }
+        if (anObj instanceof Rectangle){
+            System.out.println("Instance of Rectangle");
         }
 
         if (largestArea < measure.getMeasure(anObj)) {

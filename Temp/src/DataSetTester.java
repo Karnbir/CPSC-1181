@@ -1,8 +1,6 @@
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 
-import javax.xml.crypto.Data;
-
 public class DataSetTester {
     public static void main (String [] args) {
          class RectMeasure implements Measure {
@@ -30,13 +28,19 @@ public class DataSetTester {
         }
 
         Measure r = new RectMeasure();
+         if (r instanceof RectMeasure) {
+             System.out.println("Instance of RectMeasure");
+         }
+        if (r instanceof Measure) {
+            System.out.println("Instance of Measure");
+        }
          DataSet data = new DataSet(r);
 
          data.add(new Rectangle(7,2));
 
          Measure c = new CircleMeasure();
          data.changeMeasurer(c);
-         data.add(new Circle(5));
+         data.add(new Circle(1));
 
          data.showLargest();
 
