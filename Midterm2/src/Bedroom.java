@@ -7,7 +7,6 @@ public class Bedroom extends Room {
     // The area in square meters of the balcony.
     private static final int BALCONY_AREA = 1;
 
-
     // determines if the bedroom has a balcony
     private boolean hasBalcony;
 

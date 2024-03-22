@@ -4,13 +4,14 @@ public class BedroomTester {
         Room b1 = new Bedroom(1,1,true);
 
         Room b4 = new Bedroom(5,5,false);
+        Room b5 = null;
+        
 
         int y = 2;
 
         try {
             System.out.println(b4.getArea());
             System.out.println(b1.getArea());
-
         } catch (Exception e) {
             System.out.println("Exception caught");
         }
@@ -25,7 +26,7 @@ public class BedroomTester {
             System.out.println("equals doesn't work");
         }
 
-        if (b1.equals(y)) {
+        if (b1.equals(b5)) {
             System.out.println("equals doesn't work");
         }
 

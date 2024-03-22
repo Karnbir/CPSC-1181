@@ -7,8 +7,6 @@ public abstract class Room {
     public static final int MIN_ROOM_AREA = 6;
     public static final Color ROOM_COLOR = Color.WHITE;
 
-    protected int getA = 5;
-
     private Color color;
     private int width;
     private int length;
