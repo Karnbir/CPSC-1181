@@ -29,7 +29,6 @@ public class BallGame extends Application {
     /**
      * This program is a JavaFX game where users are challenged to click the circle as many times as they can until they
      * miss 5 times
-     *
      * MY ADDITION: I set the color of the circle to change based on the amount of successful hits
      */
     int ballSpeed;
@@ -169,7 +168,7 @@ public class BallGame extends Application {
         }
     }
 
-    public class BallClick implements EventHandler<MouseEvent> {
+    private class BallClick implements EventHandler<MouseEvent> {
         /**
          * When user clicks on circle, increment the hit count and increase the circle speed
          * @param e the event which occurred
