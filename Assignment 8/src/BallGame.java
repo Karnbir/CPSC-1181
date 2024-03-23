@@ -25,7 +25,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class BallGame extends Application {
-    int ballSpeed = 1;
+    int ballSpeed;
     boolean paused = false;
     Text misses,hits,gameOver;
     int hitCount,missCount;
@@ -33,29 +33,40 @@ public class BallGame extends Application {
     Pane center;
     Button reset,pause;
     BallAnimation animation;
+    Helper helper;
 
     public void start(Stage PrimaryStage) {
         BorderPane root = new BorderPane();
+        animation = new BallAnimation();
 
         //top pane that includes hits and misses counter
         HBox top = new HBox(10);
         top.setPadding(new Insets(10));
-        hits = new Text("Hits: " + Integer.toString(hitCount));
+
+        hits = new Text("Hits: " + hitCount);
         hits.setFill(Color.WHITE);
-        misses = new Text("Misses: " + Integer.toString(missCount));
+
+        misses = new Text("Misses: " + missCount);
         misses.setFill(Color.WHITE);
+
         top.getChildren().addAll(hits,misses);
 
         //center pane where everything will happen
         center = new Pane();
         Rectangle background = new Rectangle(0,-40,400,400);
-        center.getChildren().add(background);
+
+        gameOver = new Text(130,160,"Game Over");
+        gameOver.setFill(Color.WHITE);
+        gameOver.setFont(new Font(28));
 
         circle = new Ellipse(-50,160,50,50);
         circle.setFill(Color.WHITE);
-        center.getChildren().add(circle);
-
         circle.setOnMouseClicked(new BallClick());
+
+        center.getChildren().addAll(background,gameOver,circle);
+
+        helper = new Helper();
+        helper.reset();
 
         //bottom pane that includes pause and reset button
         HBox bottom = new HBox(10);
@@ -69,13 +80,9 @@ public class BallGame extends Application {
         bottom.getChildren().addAll(pause,reset);
         bottom.setAlignment(Pos.CENTER_RIGHT);
 
-
         root.setCenter(center);
         root.setTop(top);
         root.setBottom(bottom);
-
-        animation = new BallAnimation();
-        animation.start();
 
         Scene scene = new Scene(root,400,440);
         PrimaryStage.setScene(scene);
@@ -92,16 +99,13 @@ public class BallGame extends Application {
 
             //reset circle
             if (circle.getCenterX() > 450) {
-                misses.setText("Misses: " + Integer.toString(++missCount));
+                misses.setText("Misses: " + ++missCount);
                 circle.setCenterX(-50);
             }
 
             //game over
             if (missCount == 5) {
-                gameOver = new Text(130,160,"Game Over");
-                gameOver.setFill(Color.WHITE);
-                gameOver.setFont(new Font(28));
-                center.getChildren().add(gameOver);
+                gameOver.setOpacity(100);
                 animation.stop();
             }
         }
@@ -113,21 +117,11 @@ public class BallGame extends Application {
         public void handle(ActionEvent e) {
 
             if (e.getSource() == reset) {
-                ballSpeed = 1;
-
-                hits.setText("Hits: " + Integer.toString(hitCount = 0));
-                misses.setText("Misses: " + Integer.toString(missCount = 0));
-
-                center.getChildren().remove(gameOver);
-                circle.setCenterX(-50);
-                animation.start();
-
+                helper.reset();
             }
 
-            if (e.getSource() == pause) {
-                if (missCount == 5) {
-                }
-                else if (!paused) {
+            if (e.getSource() == pause && missCount != 5) {
+                if (!paused) {
                     animation.stop();
                     paused = true;
                 } else {
@@ -142,10 +136,21 @@ public class BallGame extends Application {
         @Override
         public void handle (MouseEvent e) {
             if(!paused) {
-                hits.setText("Hits: " + Integer.toString(++hitCount));
+                hits.setText("Hits: " + ++hitCount);
                 circle.setCenterX(-50);
                 ballSpeed += 1;
             }
+        }
+    }
+
+    private class Helper {
+        public void reset() {
+            ballSpeed = 1;
+            hits.setText("Hits: " + (hitCount = 0));
+            misses.setText("Misses: " + (missCount = 0));
+            gameOver.setOpacity(0);
+            circle.setCenterX(-50);
+            animation.start();
         }
     }
 
