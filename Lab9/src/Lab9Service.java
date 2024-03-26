@@ -9,13 +9,17 @@ import java.net.*;
  * socket is closed.
  */
 
-public class Lab9Service implements AreaConstants {
+public class Lab9Service implements AreaConstants, Runnable {
 	// the instance variables socket, fromClient, and toClient are
 	// needed because of the interface Runnable that has a method run
 	// that takes no arguments
 	private Socket socket;
 	private DataInputStream fromClient;
 	private DataOutputStream toClient;
+	@Override
+	public void run() {
+		doService();
+	}
 
 	/**
 	* Receives an open socket so that input/output streams can be attached
@@ -24,7 +28,7 @@ public class Lab9Service implements AreaConstants {
 	public Lab9Service(Socket s)
 	{
 		socket = s;
-		doService();
+		//doService();
 	}
 
 	/**

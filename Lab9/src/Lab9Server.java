@@ -26,8 +26,11 @@ public class Lab9Server implements AreaConstants{
 			
 				System.out.println("Client connected.");
 
-				Lab9Service service = new Lab9Service(socket);
-				service.doService();
+				//Lab9Service service = new Lab9Service(socket);
+				Runnable r = new Lab9Service(socket);
+				Thread t1 = new Thread(r);
+				t1.start();
+				//service.doService();
 
 			} 
 		}
