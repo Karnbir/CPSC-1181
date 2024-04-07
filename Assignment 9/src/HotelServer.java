@@ -12,9 +12,11 @@ public class HotelServer {
         @Override
         public void run() {
             try {
+                System.out.println("Client Connected");
                 doService();
+                System.out.println("Client Disconnected");
             } catch (IOException e) {
-//                throw new RuntimeException(e);
+                System.out.println("Client Crashed, continuing...");
             }
         }
     }
@@ -38,16 +40,22 @@ public class HotelServer {
         out.writeUTF("Welcome to the Hotel");
         out.flush();
 
-        while (client.isConnected()) {
-            String userRequest = in.readUTF();
+        String userRequest = in.readUTF();
 
-            if (userRequest.equalsIgnoreCase("USER")) {
-                name = in.readUTF();
-                out.writeUTF("Hello, " + name);
-                out.flush();
+        if (userRequest.equalsIgnoreCase("USER")) {
+            name = in.readUTF();
+            out.writeUTF("Hello, " + name);
+            out.flush();
+        } else {
+            out.writeUTF("ERROR: You must first identify yourself with USER command, terminating connection...");
+            out.flush();
+            client.close();
+        }
 
-            }
-            else if (userRequest.equalsIgnoreCase("RESERVE")) {
+        while (!client.isClosed()) {
+            userRequest = in.readUTF();
+
+            if (userRequest.equalsIgnoreCase("RESERVE")) {
                 int start = in.readInt();
                 int last = in.readInt();
                 if (hotel.requestReservation(name,start,last)) {
@@ -62,6 +70,13 @@ public class HotelServer {
                 out.writeUTF(hotel.toString());
                 out.flush();
             } else if (userRequest.equalsIgnoreCase("CANCEL")) {
+                if(hotel.cancelReservation(name)) {
+                    out.writeUTF("Reservations succesfully cancelled for " + name);
+                    out.flush();
+                } else {
+                    out.writeUTF("Reservations not canceled for " + name +", no current reservation");
+                    out.flush();
+                }
             } else if (userRequest.equalsIgnoreCase("QUIT")) {
                 out.writeUTF("Closing Connection");
                 out.flush();

@@ -25,7 +25,7 @@ public class HotelClient {
         System.out.println(in.readUTF());
 
         while (!server.isClosed()) {
-            System.out.println("Please enter one of the following : \n Reserve, Cancel, Available, or Quit");
+            System.out.println("Please enter one of the following : \nReserve, Cancel, Available, or Quit");
             input = new Scanner(System.in);
             String choice = input.nextLine();
             out.writeUTF(choice);
