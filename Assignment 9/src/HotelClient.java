@@ -42,7 +42,7 @@ public class HotelClient {
 
             System.out.println(in.readUTF());
 
-            if (!choice.equalsIgnoreCase("Reserve") || !choice.equalsIgnoreCase("Cancel") ||
+            if (!choice.equalsIgnoreCase("Reserve") && !choice.equalsIgnoreCase("Cancel") &&
                     !choice.equalsIgnoreCase("Available")) {
                server.close();
             }
