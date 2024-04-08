@@ -1,3 +1,11 @@
+/**
+ * Program Name: HotelClient
+ * Author: Karnbir Randhawa
+ * Course: CPSC 1181
+ * Date: April 7th, 2024
+ * JDK: Liberica JDK 21 Full
+ */
+
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -5,7 +13,9 @@ import java.net.Socket;
 import java.util.Scanner;
 
 public class HotelClient {
-
+    /**
+     * This is a program that connects to HotelServer.java
+     */
     public static void main(String[] args) {
 
         //try to connect to server
@@ -19,6 +29,11 @@ public class HotelClient {
         }
     }
 
+    /**
+     * This follows the spec that HotelServer.java expects and prints a menu for you to interact with the server to
+     * do things such as see available days, book reservations, and cancel reservations
+     * @param server is the socket connection to HotelServer.java
+     */
     public static void talkToServer(Socket server, DataInputStream in, DataOutputStream out) throws IOException {
         //read welcome message from server
         System.out.println(in.readUTF());
