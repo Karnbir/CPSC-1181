@@ -5,12 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5937f279-dd76-407a-960d-d616424a4a45" name="Changes" comment="DataSet Challenge Question">
-      <change afterPath="$PROJECT_DIR$/src/Threads.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Midterm2/src/Bedroom.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Midterm2/src/Bedroom.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Midterm2/src/BedroomTester.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Midterm2/src/BedroomTester.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Midterm2/src/MakeTriangle.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Midterm2/src/MakeTriangle.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Midterm2/src/Room.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Midterm2/src/Room.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Client2.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Network.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Server.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Sever2.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab9/src/Lab9Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab9/src/Lab9Server.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Threads.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Threads.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,6 +29,9 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="jar:///Library/Java/JavaVirtualMachines/liberica-jdk-21-full.jdk/Contents/Home/lib/src.zip!/java.base/java/util/NoSuchElementException.java" root0="SKIP_INSPECTION" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 3
 }</component>
@@ -38,9 +42,14 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Application.Client2.executor": "Run",
+    "Application.Client2_1.executor": "Run",
     "Application.ConsumeTest.executor": "Run",
     "Application.DataSetTester.executor": "Run",
     "Application.Main.executor": "Run",
+    "Application.Network.executor": "Run",
+    "Application.Server.executor": "Run",
+    "Application.Sever2.executor": "Run",
     "Application.Threads.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
@@ -77,6 +86,12 @@
       <workItem from="1710450060891" duration="786000" />
       <workItem from="1710475087131" duration="24000" />
       <workItem from="1710810865640" duration="2309000" />
+      <workItem from="1711395847591" duration="1004000" />
+      <workItem from="1711401535948" duration="2304000" />
+      <workItem from="1711405780961" duration="3658000" />
+      <workItem from="1711421953667" duration="1880000" />
+      <workItem from="1711555609955" duration="20000" />
+      <workItem from="1711555635089" duration="10624000" />
     </task>
     <task id="LOCAL-00001" summary="DataSet Challenge Question">
       <option name="closed" value="true" />
@@ -95,5 +110,16 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="DataSet Challenge Question" />
     <option name="LAST_COMMIT_MESSAGE" value="DataSet Challenge Question" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$USER_HOME$/Downloads/WebGet.java</url>
+          <line>24</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

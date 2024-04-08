@@ -16,24 +16,23 @@ public class Lab9Server implements AreaConstants{
 
 		ServerSocket serverSocket = new ServerSocket(PORT);
 		System.out.println("Server started");
-
+	        
 	        try
 		{
 			while(true)
 			{
 				System.out.println("Waitin...");
-				Socket socket = serverSocket.accept(); //<-- ALWAYS ACEPT NEW CONNECTIONS
+				Socket socket = serverSocket.accept();
 			
 				System.out.println("Client connected.");
 
 				Lab9Service service = new Lab9Service(socket);
-				service.doService(); //<-- GIVE KARNBIR HIS MOVIE
+				service.doService();
 
 			} 
 		}
-		finally //CLEAN UP
+		finally
 		{
-			System.out.println("Closing sserver");
 			serverSocket.close();
 		}
        
