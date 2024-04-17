@@ -2,6 +2,7 @@ import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -19,16 +20,21 @@ import java.net.Socket;
 
 public class JavaFX  extends Application {
 
+    Button deposit,withdrawl;
+    TextField field;
+    Text bank;
+    static Socket server;
+    static DataInputStream in;
+    static DataOutputStream out;
+
     public static void main (String [] args) {
         try {
-            Socket server = new Socket(localhost,1181);
-            DataInputStream in = new DataInputStream(server.getInputStream());
-            DataOutputStream out = new DataOutputStream(server.getOutputStream());
+            server = new Socket("localhost",1181);
+            in = new DataInputStream(server.getInputStream());
+            out = new DataOutputStream(server.getOutputStream());
             launch(args);
         } catch (IOException e) {
             System.out.println("ERROR: Couldn't connect to server");
-        } finally {
-            server.close();
         }
     }
 
@@ -39,52 +45,56 @@ public class JavaFX  extends Application {
         Text welcome = new Text("Welcome to Communist Bank");
         top.getChildren().addAll(welcome);
 
-        VBox centre = new VBox(new Insets(5));
-        TextField field = new TextField("Enter Amount");
+        VBox centre = new VBox(5);
+        field = new TextField("Enter Amount");
 
-        HBox centreButtons = new HBox(new Insets(20));
-        Button deposit = new Button("Deposit");
+        HBox centreButtons = new HBox(20);
+        deposit = new Button("Deposit");
         deposit.setOnAction(new ButtonEvent());
-        Button withdrawl = new Button("Withdrawl");
+        withdrawl = new Button("Withdrawl");
         withdrawl.setOnAction(new ButtonEvent());
         centreButtons.getChildren().addAll(deposit,withdrawl);
         centre.getChildren().addAll(field,centreButtons);
-        centreButtons.setPos(Centre);
+        centreButtons.setAlignment(Pos.CENTER);
 
-        HBox bottom = new HBox(new Inset(5));
-        bottom.setPos("centre");
+
+        HBox bottom = new HBox(5);
+        bottom.setAlignment(Pos.CENTER);
         Text status = new Text("Status");
-        Text bank = new Text("");
-        bottom.getchildren.addAll(status,bank);
+        bank = new Text("");
+        bottom.getChildren().addAll(status,bank);
 
         root.setTop(top);
         root.setCenter(centre);
         root.setBottom(bottom);
 
-        Scene scene = new Scene(root);
+        Scene scene = new Scene(root,200,200);
 
-        primaryStage.setStage(root,600,600);
-        primaryStage.start();
+        primaryStage.setScene(scene);
         primaryStage.show();
         primaryStage.setTitle("JavaFX Bank");
     }
 
-    public void ButtonEvent implements EventHandler<ActionEvent> {
+    public class ButtonEvent implements EventHandler<ActionEvent> {
         @Override
         public void handle (ActionEvent e) {
-            if (e.getSource == deposit) {
-                server.writeUTF("Deposit");
-                server.flush();
-                server.writeInt(field);
-                server.flush();
-                bank.setText(in.readUTF());
-            }
-            if (e.getSource == withdrawl) {
-                server.writeUTF("Withdrawl");
-                server.flush();
-                server.writeInt(field);
-                server.flush();
-                bank.setText(in.readUTF());
+            try {
+                if (e.getSource() == deposit) {
+                    out.writeUTF("Deposit");
+                    out.flush();
+                    out.writeInt(Integer.parseInt(field.getText()));
+                    out.flush();
+                    bank.setText(in.readUTF());
+                }
+                if (e.getSource() == withdrawl) {
+                    out.writeUTF("Withdrawl");
+                    out.flush();
+                    out.writeInt(Integer.parseInt(field.getText()));
+                    out.flush();
+                    bank.setText(in.readUTF());
+                }
+            } catch (IOException i) {
+                bank.setText("ERROR: Couldn't communicate to the bank");
             }
         }
     }

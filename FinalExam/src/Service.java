@@ -1,5 +1,7 @@
-import java.io.DataInput;
 import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.net.Socket;
 
 public class Service implements Runnable, Serve {
     private Socket client;
@@ -11,13 +13,17 @@ public class Service implements Runnable, Serve {
     }
     @Override
     public void run(){
-        service();
+        try {
+            service();
+        } catch (IOException e) {
+            System.out.println("Connection ERROR");
+        }
     }
 
     @Override
-    private void service(){
+    public void service() throws IOException {
         DataInputStream in = new DataInputStream(client.getInputStream());
-        DataInputStream out = new DataInputStream(client.getOutputStream());
+        DataOutputStream out = new DataOutputStream(client.getOutputStream());
 
         if (in.readUTF().equalsIgnoreCase("Deposit")) {
             int amount = in.readInt();
@@ -44,6 +50,5 @@ public class Service implements Runnable, Serve {
                 out.flush();
             }
         }
-
     }
 }
